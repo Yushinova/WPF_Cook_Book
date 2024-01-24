@@ -1,0 +1,103 @@
+﻿<Window x:Class="Recipe_Book.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Recipe_Book"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="style/MainStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="Crimson" Height="450" Width="800" >
+
+        <Rectangle x:Name="RecipeRectangle" HorizontalAlignment="Left" 
+                   Height="350" Margin="10,54,0,0" 
+                   Stroke="Black" VerticalAlignment="Top" 
+                   Width="260" RadiusX="20" RadiusY="20" Fill="White"/>
+        <ListBox x:Name="RecipeList" HorizontalAlignment="Left" 
+          Height="330" Margin="10,74,0,0" 
+          VerticalAlignment="Top" Width="260" 
+                 BorderBrush="{x:Null}" 
+                 Background="{x:Null}">
+            <ListViewItem x:Uid="Первые блюда" Height="50">
+                <StackPanel>
+
+                    <Image Style="{StaticResource ImageRecipeListView}" Source="/1.png" />
+                    <TextBlock   Text="Первые блюда"/>
+                    <Button x:Uid="Первые блюда" Click="Plus_Click">
+                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </ListViewItem>
+
+            <ListViewItem x:Uid="Вторые блюда" Height="50">
+                <StackPanel>
+                    <Image Style="{StaticResource ImageRecipeListView}" Source="/2.png"/>
+                    <TextBlock Text="Вторые блюда"/>
+                    <Button x:Uid="Вторые блюда" Click="Plus_Click">
+                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem x:Uid="Салаты" Height="50">
+                <StackPanel>
+
+                    <Image Style="{StaticResource ImageRecipeListView}" Source="/3.png" />
+                    <TextBlock  Text="Салаты"/>
+                    <Button x:Uid="Салаты" Click="Plus_Click">
+                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem x:Uid="Завтрак" x:Name="BreakfastList" Height="50">
+                <StackPanel>
+
+                    <Image Style="{StaticResource ImageRecipeListView}" Source="/5.png" />
+                    <TextBlock  Text="Завтрак"/>
+                    <Button x:Uid="Завтрак" Click="Plus_Click">
+                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem x:Uid="Десерты" Height="50">
+                <StackPanel>
+
+                    <Image Style="{StaticResource ImageRecipeListView}" Source="/6.png" />
+                    <TextBlock  Text="Десерты"/>
+                    <Button x:Uid="Десерты" Click="Plus_Click">
+                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                    </Button>
+                </StackPanel>
+            </ListViewItem>
+            <Button x:Name="NewSection" Width="130" Height="30" Margin="55,15,15,10" Background="Crimson"
+                    Content="Новый раздел" 
+                    Foreground="White" FontSize="14" Click="NewSection_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </ListBox>
+        <Rectangle HorizontalAlignment="Left" 
+            Height="350" Margin="275,54,0,10" 
+            Stroke="Black" VerticalAlignment="Top" 
+            Width="505" RadiusX="20" RadiusY="20" Fill="White"/>
+        <TextBox x:Name="Text1" 
+                 HorizontalAlignment="Left"
+                 Margin="605,74,0,0" 
+                 TextWrapping="Wrap"
+                 Text="TextBox" 
+                 VerticalAlignment="Top" 
+                 Width="165" Height="25" 
+                 TextAlignment="Right" 
+                 BorderBrush="{x:Null}"/>
+        <StackPanel Height="100" Width="150" Margin="305,75,50,75"/>
+        <Button Height="80" Width="120" Content="Добавить картинку" Background="LightPink" Margin="452,75,198,275"/>
+    </Grid>
+</Window>
