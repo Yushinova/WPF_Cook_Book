@@ -19,57 +19,56 @@
                    Height="350" Margin="10,54,0,0" 
                    Stroke="Black" VerticalAlignment="Top" 
                    Width="260" RadiusX="20" RadiusY="20" Fill="White"/>
-        <ListBox x:Name="RecipeList" HorizontalAlignment="Left" 
+        <ListView x:Name="RecipeList" HorizontalAlignment="Left" 
           Height="330" Margin="10,74,0,0" 
           VerticalAlignment="Top" Width="260" 
                  BorderBrush="{x:Null}" 
                  Background="{x:Null}">
-            <ListViewItem x:Uid="Первые блюда" Height="50">
+            <ListViewItem x:Uid="1" Height="50">
                 <StackPanel>
-
                     <Image Style="{StaticResource ImageRecipeListView}" Source="/1.png" />
                     <TextBlock   Text="Первые блюда"/>
-                    <Button x:Uid="Первые блюда" Click="Plus_Click">
+                    <Button x:Uid="1" Click="Plus_Click">
                         <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
                     </Button>
                 </StackPanel>
             </ListViewItem>
 
-            <ListViewItem x:Uid="Вторые блюда" Height="50">
+            <ListViewItem x:Uid="2" Height="50">
                 <StackPanel>
                     <Image Style="{StaticResource ImageRecipeListView}" Source="/2.png"/>
                     <TextBlock Text="Вторые блюда"/>
-                    <Button x:Uid="Вторые блюда" Click="Plus_Click">
+                    <Button x:Uid="2" Click="Plus_Click">
                         <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
                     </Button>
                 </StackPanel>
             </ListViewItem>
-            <ListViewItem x:Uid="Салаты" Height="50">
+            <ListViewItem x:Uid="3" Height="50">
                 <StackPanel>
 
                     <Image Style="{StaticResource ImageRecipeListView}" Source="/3.png" />
                     <TextBlock  Text="Салаты"/>
-                    <Button x:Uid="Салаты" Click="Plus_Click">
+                    <Button x:Uid="3" Click="Plus_Click">
                         <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
                     </Button>
                 </StackPanel>
             </ListViewItem>
-            <ListViewItem x:Uid="Завтрак" x:Name="BreakfastList" Height="50">
+            <ListViewItem x:Uid="5" x:Name="BreakfastList" Height="50">
                 <StackPanel>
 
                     <Image Style="{StaticResource ImageRecipeListView}" Source="/5.png" />
                     <TextBlock  Text="Завтрак"/>
-                    <Button x:Uid="Завтрак" Click="Plus_Click">
+                    <Button x:Uid="5" Click="Plus_Click">
                         <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
                     </Button>
                 </StackPanel>
             </ListViewItem>
-            <ListViewItem x:Uid="Десерты" Height="50">
+            <ListViewItem x:Uid="6" Height="50">
                 <StackPanel>
 
                     <Image Style="{StaticResource ImageRecipeListView}" Source="/6.png" />
                     <TextBlock  Text="Десерты"/>
-                    <Button x:Uid="Десерты" Click="Plus_Click">
+                    <Button x:Uid="6" Click="Plus_Click">
                         <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
                     </Button>
                 </StackPanel>
@@ -83,7 +82,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-        </ListBox>
+        </ListView>
         <Rectangle HorizontalAlignment="Left" 
             Height="350" Margin="275,54,0,10" 
             Stroke="Black" VerticalAlignment="Top" 
