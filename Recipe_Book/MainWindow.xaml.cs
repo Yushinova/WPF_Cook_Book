@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Recipe_Book
 {
@@ -27,16 +28,45 @@ namespace Recipe_Book
         public MainWindow()
         {
             InitializeComponent();
+            Deserial();
         }
         private void Serial()//for нужен и установить ID
         {
-            string name = (((RecipeList.Items[0] as ListViewItem).Content as StackPanel).Children[1] as TextBlock).Text;
-            string id = (RecipeList.Items[0] as ListViewItem).Uid;
-            Section section = new Section { Name = name, ID = id };
-            sections.Add(section);
-            Text1.Text = sections[0].ID;
-
-
+            for (int i = 0; i < RecipeList.Items.Count; i++)
+            {
+                string name = ((RecipeList.Items[i] as StackPanel).Children[1] as TextBlock).Text;
+                string id = (RecipeList.Items[i] as StackPanel).Uid;
+                Section section = new Section { Name = name, ID = id };
+                sections.Add(section);
+            }
+            Text1.Text = RecipeList.Items.Count.ToString();
+            XmlSerializer bf = new XmlSerializer(typeof(List<Section>));
+            using (Stream fstr = File.Create("sections.xml"))
+            {
+                bf.Serialize(fstr, sections);
+            }
+        }
+        private void Deserial()
+        {
+            XmlSerializer bf = new XmlSerializer(typeof(List<Section>));
+            if (System.IO.File.Exists("sections.xml"))
+            {
+                using (Stream fsteread = File.OpenRead("sections.xml"))
+                {
+                    sections = (List<Section>)bf.Deserialize(fsteread);
+                }
+                ClearRecipelist();
+            }
+        }
+        private void ClearRecipelist()
+        {
+            string bin = AppDomain.CurrentDomain.BaseDirectory.ToString() + @"image\";//адоес debug папки из текущего репозитория
+            if (RecipeList.Items.Count > 0) RecipeList.Items.Clear();
+            foreach (var item in sections)
+            {
+                string Path = bin + item.ID + ".png";
+                RecipeList.Items.Add(AddPanel(Path, item.Name, item.ID));
+            }
         }
         private void Plus_Click(object sender, RoutedEventArgs e)
         {
@@ -55,7 +85,7 @@ namespace Recipe_Book
             button.Click += new RoutedEventHandler(Plus_Click);
             return button;
         }
-        private StackPanel AddPanel(string path, string nameSection)
+        private StackPanel AddPanel(string path, string nameSection, string save_name)
         {
             Image image = new Image();//вынести в отдельную функцию для динамического добавления
             image.Width = 50;
@@ -68,7 +98,9 @@ namespace Recipe_Book
             Text1.Text = text.Text;
             panel.Children.Add(image);
             panel.Children.Add(text);
-            panel.Children.Add(AddPlus(text.Text));
+            panel.Children.Add(AddPlus(save_name));
+            panel.Uid = save_name;
+            panel.MouseRightButtonDown += new MouseButtonEventHandler(MouseRight_RecipeList);
             //panel.Uid = Path.GetFileNameWithoutExtension(path);
             return panel;
         }
@@ -94,36 +126,39 @@ namespace Recipe_Book
             }
             Button b = sender as Button;
             string nameSection = ((b.Parent as System.Windows.Controls.StackPanel).Children[1] as TextBox).Text;
-            string Hash = nameSection.GetHashCode().ToString();
             Text1.Text = b.Content.ToString();
             string save_name = Guid.NewGuid().ToString();//уникальный идентификатор
             BitmapImage save = new BitmapImage(new Uri(Path));
             JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();//сохранение картинки в папке программы
             jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(save));
             using (FileStream fileStream = new FileStream(@"image\" + save_name+ ".png", FileMode.Create))//bin debug
-                jpegBitmapEncoder.Save(fileStream);
-            RecipeList.Items.RemoveAt(RecipeList.Items.Count - 1);
-            RecipeList.Items.Add(AddPanel(Path,nameSection));
-            Serial();
-
+           jpegBitmapEncoder.Save(fileStream);
+            RecipeList.Items.RemoveAt(RecipeList.Items.Count - 1);//удаляем временную панель для редактирования
+            RecipeList.Items.Add(AddPanel(Path,nameSection, save_name));
         }
-        private void NewSection_Click(object sender, RoutedEventArgs e)
+        private void AddSection_Click(object sender, RoutedEventArgs e)
         {
             StackPanel panel = new StackPanel();
             Button button = new Button();
             button.Height = 50;
             button.Width = 50;
+            button.Background = Brushes.LightPink;
             button.Content = "Иконка";
-            button.Click += new RoutedEventHandler(AddImage_Click);//добавляем событие на кнопку
-           
+            button.Click += new RoutedEventHandler(AddImage_Click);//добавляем событие на кнопку        
             panel.Children.Add(button);
             TextBox box = new TextBox();
             box.Height = 34;
             box.Width = 160;
             box.FontSize = 18;
-            box.Text = "Добавить";
+            box.Text = "Мой раздел";
             panel.Children.Add(box);
             RecipeList.Items.Add(panel);
+        }
+
+        private void MouseRight_RecipeList(object sender, MouseButtonEventArgs e)//вызов меню удалить редактировать разделы
+        {
+            Point p = e.GetPosition(this);
+            RedMenu.Visibility = Visibility.Visible;
         }
     }
 }

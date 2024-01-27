@@ -19,74 +19,68 @@
                    Height="350" Margin="10,54,0,0" 
                    Stroke="Black" VerticalAlignment="Top" 
                    Width="260" RadiusX="20" RadiusY="20" Fill="White"/>
-        <ListView x:Name="RecipeList" HorizontalAlignment="Left" 
-          Height="330" Margin="10,74,0,0" 
-          VerticalAlignment="Top" Width="260" 
-                 BorderBrush="{x:Null}" 
-                 Background="{x:Null}">
-            <ListViewItem x:Uid="1" Height="50">
-                <StackPanel>
-                    <Image Style="{StaticResource ImageRecipeListView}" Source="/1.png" />
-                    <TextBlock   Text="Первые блюда"/>
-                    <Button x:Uid="1" Click="Plus_Click">
-                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
-                    </Button>
-                </StackPanel>
-            </ListViewItem>
-
-            <ListViewItem x:Uid="2" Height="50">
-                <StackPanel>
-                    <Image Style="{StaticResource ImageRecipeListView}" Source="/2.png"/>
-                    <TextBlock Text="Вторые блюда"/>
-                    <Button x:Uid="2" Click="Plus_Click">
-                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
-                    </Button>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem x:Uid="3" Height="50">
-                <StackPanel>
-
-                    <Image Style="{StaticResource ImageRecipeListView}" Source="/3.png" />
-                    <TextBlock  Text="Салаты"/>
-                    <Button x:Uid="3" Click="Plus_Click">
-                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
-                    </Button>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem x:Uid="5" x:Name="BreakfastList" Height="50">
-                <StackPanel>
-
-                    <Image Style="{StaticResource ImageRecipeListView}" Source="/5.png" />
-                    <TextBlock  Text="Завтрак"/>
-                    <Button x:Uid="5" Click="Plus_Click">
-                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
-                    </Button>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem x:Uid="6" Height="50">
-                <StackPanel>
-
-                    <Image Style="{StaticResource ImageRecipeListView}" Source="/6.png" />
-                    <TextBlock  Text="Десерты"/>
-                    <Button x:Uid="6" Click="Plus_Click">
-                        <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
-                    </Button>
-                </StackPanel>
-            </ListViewItem>
-            <Button x:Name="NewSection" Width="130" Height="30" Margin="55,15,15,10" Background="Crimson"
-                    Content="Новый раздел" 
-                    Foreground="White" FontSize="14" Click="NewSection_Click" >
+        <StackPanel Margin="19,40,540,326" Height="35
+                    " Width="235" MinWidth="3">
+            <Button x:Name="AddSection" Width="90" Height="30" Margin="135,0,0,0" Background="Crimson"
+                    Content="Добавить" Foreground="White"
+                    FontSize="14" Click="AddSection_Click" 
+                    RenderTransformOrigin="1.125,-1.767">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="CornerRadius" Value="8"/>
                     </Style>
                 </Button.Resources>
             </Button>
+        </StackPanel>
+        <ListView x:Name="RecipeList" HorizontalAlignment="Left" 
+          Height="279" Margin="10,104,0,0" 
+          VerticalAlignment="Top" Width="260" 
+                 BorderBrush="{x:Null}" 
+                 Background="{x:Null}" >
+
+            <StackPanel x:Uid="1" Height="50" MouseRightButtonDown="MouseRight_RecipeList">
+                <Image Style="{StaticResource ImageRecipeListView}" Source="/1.png" />
+                <TextBlock   Text="Первые блюда"/>
+                <Button x:Uid="1" Click="Plus_Click">
+                    <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                </Button>
+            </StackPanel>
+            <StackPanel x:Uid="2" Height="50" MouseRightButtonDown="MouseRight_RecipeList">
+                <Image Style="{StaticResource ImageRecipeListView}" Source="/2.png"/>
+                <TextBlock Text="Вторые блюда"/>
+                <Button x:Uid="2" Click="Plus_Click">
+                    <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                </Button>
+            </StackPanel>
+            <StackPanel x:Uid="3" Height="50" MouseRightButtonDown="MouseRight_RecipeList" >
+
+                <Image Style="{StaticResource ImageRecipeListView}" Source="/3.png" />
+                <TextBlock  Text="Салаты"/>
+                <Button x:Uid="3" Click="Plus_Click">
+                    <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                </Button>
+            </StackPanel>
+            <StackPanel x:Uid="5" Height="50" MouseRightButtonDown="MouseRight_RecipeList">
+
+                <Image Style="{StaticResource ImageRecipeListView}" Source="/5.png" />
+                <TextBlock  Text="Завтрак"/>
+                <Button x:Uid="5" Click="Plus_Click">
+                    <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                </Button>
+            </StackPanel>
+            <StackPanel x:Uid="6" Height="50" MouseRightButtonDown="MouseRight_RecipeList">
+
+                <Image Style="{StaticResource ImageRecipeListView}" Source="/6.png" />
+                <TextBlock  Text="Десерты"/>
+                <Button x:Uid="6" Click="Plus_Click">
+                    <Image Width="15" Height="15" Source="/4.png" StretchDirection="DownOnly" Stretch="Fill"/>
+                </Button>
+            </StackPanel>
         </ListView>
         <Rectangle HorizontalAlignment="Left" 
             Height="350" Margin="275,54,0,10" 
             Stroke="Black" VerticalAlignment="Top" 
-            Width="505" RadiusX="20" RadiusY="20" Fill="White"/>
+            Width="505" RadiusX="20" RadiusY="20" Fill="White" Cursor="None"/>
         <TextBox x:Name="Text1" 
                  HorizontalAlignment="Left"
                  Margin="605,74,0,0" 
@@ -96,7 +90,21 @@
                  Width="165" Height="25" 
                  TextAlignment="Right" 
                  BorderBrush="{x:Null}"/>
-        <StackPanel Height="100" Width="150" Margin="305,75,50,75"/>
-        <Button Height="80" Width="120" Content="Добавить картинку" Background="LightPink" Margin="452,75,198,275"/>
+        <Button Height="80" Width="120" Content="Добавить картинку" 
+                Background="LightPink" Margin="452,75,198,275"/>
+        <StackPanel x:Name="RedMenu" Height="80" Width="NaN" Orientation="Vertical" 
+                    Background="LightPink" Margin="270,188,343,182">
+            <!--Visibility="Hidden"-->
+            <Button x:Name="RedSection" Width="165" Height="30" Margin="10,10,10,10" 
+                    Background="{x:Null}"
+        Content="Редактировать" Foreground="Black"
+        FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left" FontWeight="Bold"/>
+            <Button x:Name="DelSection" Width="165" Height="30" Margin="10,-8,10,10" 
+                    Background="{x:Null}"
+        Content="Удалить" Foreground="Black"
+        FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left" FontWeight="Bold"/>
+        </StackPanel>
     </Grid>
 </Window>
