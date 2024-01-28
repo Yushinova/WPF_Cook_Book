@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Xml.Linq;
 
 namespace Recipe_Book
 {
@@ -31,5 +34,9 @@ namespace Recipe_Book
             }
         }
         public List<string> GetIngredients() {  return ingredients; }
+        public override string ToString()
+        {
+            return $" {NameResipe} ID: {ID} ";
+        }
     }
 }
