@@ -25,7 +25,9 @@ namespace Recipe_Book
     {
         public string Path;
         public List <Section> sections = new List <Section> ();
-        public int IndexResipeList {  get; set; }
+        public int IndexResipeList = -1;
+        public bool isRedact = false;
+        public bool isAddSection = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -50,7 +52,7 @@ namespace Recipe_Book
         private void Serial()
         {
             XmlSerializer bf = new XmlSerializer(typeof(List<Section>));
-            using (Stream fstr = File.Create("sections.xml"))//добавляет 2 раза
+            using (Stream fstr = File.Create("sections.xml"))//добавляет 2 раза????????
             {
                 bf.Serialize(fstr, sections);
             }
@@ -83,6 +85,7 @@ namespace Recipe_Book
             sections[Convert.ToInt32(b.Uid)].SetRecipe(recipe);
             Recipe recipe1 = new Recipe { ID = b.Uid, NameResipe = "Sdvfd", ingredients = { "hhdh", "hhddh" } };
             sections[Convert.ToInt32(b.Uid)].SetRecipe(recipe1);
+            Serial();
             //Text1.Text = (sections[Convert.ToInt32(b.Uid)].GetRecipes()).Count().ToString();
             //Serial();
 
@@ -145,12 +148,33 @@ namespace Recipe_Book
             jpegBitmapEncoder.Save(fileStream);
             RecipeList.Items.RemoveAt(IndexResipeList);//удаляем временную панель для редактирования
             RecipeList.Items.Insert(IndexResipeList, AddPanel(Path,nameSection, save_name));
-            //foreach (var item in RecipeList.Items)//после удаления раздела нужно будет переустановить все уид плюсов
-            //{            
-            //    (item as StackPanel).Children[2].Uid = "new";
-              
-            //}
+            ChangeIndex();
             //Text1.Text = ((RecipeList.Items[3] as StackPanel).Children[2] as Button).Uid;
+        }
+        private void ChangeIndex()
+        {
+            int k = 0;
+            foreach (var item in RecipeList.Items)//после удаления раздела нужно будет переустановить все уид плюсов
+            {
+                (item as StackPanel).Children[2].Uid = k.ToString();
+                k++;
+
+            }
+            if(isAddSection)
+            {
+                Section section = new Section {Name = ((RecipeList.Items[IndexResipeList] as StackPanel).Children[1] as TextBlock).Text, ID = (RecipeList.Items[IndexResipeList] as StackPanel).Uid };
+                sections.Add(section);
+                Text1.Text = sections.Count.ToString();
+                isAddSection = false;
+            }
+            if(isRedact)
+            {
+                sections[IndexResipeList].Name = ((RecipeList.Items[IndexResipeList] as StackPanel).Children[1] as TextBlock).Text;
+                sections[IndexResipeList].ID = (RecipeList.Items[IndexResipeList] as StackPanel).Uid;
+                Text1.Text = sections[IndexResipeList].Name;
+                isRedact = false;
+            }
+
         }
         private StackPanel RedPanel()
         {
@@ -170,9 +194,9 @@ namespace Recipe_Book
             panel.Children.Add(box);
             return panel;
         }
-        private void AddSection_Click(object sender, RoutedEventArgs e)
+        private void AddSection_Click(object sender, RoutedEventArgs e)//добавление раздела для рецептов
         {
-           
+            isAddSection = true;
             RecipeList.Items.Add(RedPanel());
             IndexResipeList = RecipeList.Items.Count - 1;
         }
@@ -184,11 +208,41 @@ namespace Recipe_Book
             IndexResipeList = Convert.ToInt32((sender as StackPanel).Children[2].Uid);//иногда промахивается
             Text1.Text = IndexResipeList.ToString();
         }
-        private void Red_Click(object sender, RoutedEventArgs e)
+        private void Red_Click(object sender, RoutedEventArgs e)//редактирование любого раздела
+        {
+            RedMenu.Visibility = Visibility.Hidden;
+            isRedact = true;
+            RecipeList.Items.RemoveAt(IndexResipeList);
+            RecipeList.Items.Insert(IndexResipeList, RedPanel());         
+        }
+
+        private void Dell_Click(object sender, RoutedEventArgs e)
+        {
+            RedMenu.Visibility = Visibility.Hidden;
+            if(IndexResipeList!=-1)
+            {
+                RecipeList.Items.RemoveAt(IndexResipeList);
+                sections.RemoveAt(IndexResipeList);
+                IndexResipeList = 0;
+            }
+        }
+
+        private void MouseLeaveMenuRed(object sender, MouseEventArgs e)
+        {
+            RedMenu.Visibility = Visibility.Hidden;
+        }
+        private void AddIngrediens()
         {
             
-            RecipeList.Items.RemoveAt(IndexResipeList);
-            RecipeList.Items.Insert(IndexResipeList, RedPanel());
+        }
+        private void ComboBox_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Ingredients.IsDropDownOpen)
+            {
+                e.Handled = true;
+                Ingredients.IsDropDownOpen = false;
+            }
+            base.OnPreviewMouseLeftButtonDown(e);
         }
     }
 }

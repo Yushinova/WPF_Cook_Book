@@ -90,21 +90,47 @@
           Width="165" Height="25" 
           TextAlignment="Right" 
           BorderBrush="{x:Null}"/>
-            <Button Height="80" Width="120" Content="Добавить картинку" 
-         Background="LightPink" Margin="452,75,198,275"/>
+            <Image Height="95" Width="150" Margin="15,2,0,0" Source="/7.png"/>
+            <Button Width="90" Height="30" Margin="280,10,50,0" Content="Назад" Background="#FFEA627E" FontSize="18" Foreground="White"/>
+            <Label Width="270" Height="54"
+                   Content="Мои рецепты" FontSize="36" FontFamily="Sweet Mavka Script" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Padding="3,3,3,3"
+                   Canvas.Left="500" VerticalAlignment="Top"/>
+            <Image Height="40" Width="40" Margin="510,5,0,0" Source="/8.png"/>
+            <StackPanel x:Name="ViewRecipePanel" Orientation="Vertical" 
+                        Width="480" Height="310" Margin="287,80,0,0">
+                <Image x:Name="ImageRecipe" Height="100" Width="150" IsEnabled="False" />
+                <TextBox x:Name="NameRecipe"
+                         Height="25" Width="480" Text="Название" 
+                         HorizontalContentAlignment="Center"
+                         FontSize="18" FontWeight="Bold" BorderBrush="{x:Null}"/>
+
+
+                <ComboBox x:Name="Ingredients"  IsEditable="True" IsReadOnly="True" Text="Ингредиенты:"
+                               Height="30" FontSize="14"
+                         PreviewMouseLeftButtonDown="ComboBox_OnPreviewMouseLeftButtonDown">
+
+                    <ComboBoxItem Content="hdhh"/>
+                        <ComboBoxItem Content="djdjjdj"/>
+                        <ComboBoxItem Content="hdhddhdh"/>
+                        <ComboBoxItem Content="jddddh"/>
+                    </ComboBox>
+
+                <TextBlock x:Name="ResipeText" Width="480" Height="125" Text="Описание рецепта:"
+                           FontSize="14" FontWeight="Normal"/>
+            </StackPanel>
             <StackPanel x:Name="RedMenu" Height="80" Width="NaN" Orientation="Vertical" 
-             Background="WhiteSmoke" Margin="270,188,343,182"  >
-                <!--Visibility="Hidden"-->
+            Background="WhiteSmoke" Margin="270,188,343,182" MouseLeave="MouseLeaveMenuRed" Visibility="Hidden">
+
                 <Button x:Name="RedSection" Width="175" Height="30" Margin="3,10,10,10" 
-             Background="{x:Null}"
- Content="Редактировать" Foreground="Black"
- FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
-             HorizontalContentAlignment="Left" FontWeight="Bold" Click="Red_Click"/>
+            Background="{x:Null}"
+Content="Редактировать" Foreground="Black"
+FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
+            HorizontalContentAlignment="Left" FontWeight="Bold" Click="Red_Click"/>
                 <Button x:Name="DelSection" Width="175" Height="30" Margin="3,-8,10,10" 
-             Background="{x:Null}"
- Content="Удалить" Foreground="Black"
- FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
-             HorizontalContentAlignment="Left" FontWeight="Bold"/>
+            Background="{x:Null}"
+Content="Удалить" Foreground="Black"
+FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
+            HorizontalContentAlignment="Left" FontWeight="Bold" Click="Dell_Click"/>
             </StackPanel>
         </Canvas>
 
