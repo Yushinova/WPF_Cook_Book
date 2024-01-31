@@ -85,7 +85,7 @@ namespace Recipe_Book
             sections[Convert.ToInt32(b.Uid)].SetRecipe(recipe);
             Recipe recipe1 = new Recipe { ID = b.Uid, NameResipe = "Sdvfd", ingredients = { "hhdh", "hhddh" } };
             sections[Convert.ToInt32(b.Uid)].SetRecipe(recipe1);
-            Serial();
+            //Serial();
             //Text1.Text = (sections[Convert.ToInt32(b.Uid)].GetRecipes()).Count().ToString();
             //Serial();
 
