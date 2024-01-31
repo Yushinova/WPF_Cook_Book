@@ -55,7 +55,7 @@
      Height="350" Margin="275,54,0,0" 
      Stroke="Black" VerticalAlignment="Top" 
      Width="505" RadiusX="20" RadiusY="20" Fill="White" Cursor="None"/>
-          
+            <Image Height="350" Width="505" Margin="275,54,0,0" Source="image/9.png" Opacity="0.85"/>
             <TextBox x:Name="Text1" 
           HorizontalAlignment="Left"
           Margin="605,74,0,0" 
