@@ -22,7 +22,8 @@
     </Style>
     <Style x:Key="PanelListView" TargetType="StackPanel">
         <Setter Property="Orientation" Value="Horizontal"/>
-        <Setter Property="Width" Value="240"/>
+        <Setter Property="Width" Value="260"/>
         <Setter Property="Height" Value="50"/>
+        <Setter Property="Background" Value="White"/>
     </Style>
 </ResourceDictionary>
