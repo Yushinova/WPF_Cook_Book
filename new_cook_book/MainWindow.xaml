@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid  Height="450" Width="800" >
+    <Grid  Height="450" Width="800" MouseDown="MouseDownHideRedPanel" >
         <Canvas x:Name="MainCanva" Background="Crimson" Height="450" Width="800">
             <Rectangle x:Name="RecipeRectangle" HorizontalAlignment="Left" 
             Height="350" Margin="10,54,0,0" 
@@ -82,7 +82,7 @@
             Background="{x:Null}"
             Content="Редактировать" Foreground="Black"
             FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
-            HorizontalContentAlignment="Left" FontWeight="Bold"/>
+            HorizontalContentAlignment="Left" FontWeight="Bold" Click="Redact_Click"/>
                 <Button x:Name="DelSection" Width="175" Height="30" Margin="3,-8,10,10" 
             Background="{x:Null}"
             Content="Удалить" Foreground="Black"
@@ -94,7 +94,7 @@
                 <StackPanel Style="{StaticResource PanelListView}" Width="280">
                     <Button x:Name="DownLoadImage" Height="50" Width="50" Margin="10,0,0,0" Content="Иконка" Click="Add_Image"/>
                     <TextBox x:Name="RedText" Text="Ваш раздел" Width="160" Height="34" Margin="5,0,0,0" FontSize="14" VerticalAlignment="Center"/>
-                    <Button Height="40" Width="40" Content="OK" Margin="5,0,0,0" Click="Add_Item_Click"/>
+                    <Button x:Name="OkButton" Height="40" Width="40" Content="OK" Margin="5,0,0,0" Click="Add_Item_Click"/>
                 </StackPanel>
             </Grid>
            
