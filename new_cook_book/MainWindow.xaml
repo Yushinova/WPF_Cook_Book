@@ -17,15 +17,14 @@
     <Grid  Height="450" Width="800" MouseDown="MouseDownHideRedPanel" >
         <Canvas x:Name="MainCanva" Background="Crimson" Height="450" Width="800">
             <Rectangle x:Name="RecipeRectangle" HorizontalAlignment="Left" 
-            Height="350" Margin="10,54,0,0" 
-            Stroke="Black" VerticalAlignment="Top" 
-            Width="260" RadiusX="20" RadiusY="20" Fill="White"/>
+                       Height="350" Margin="10,54,0,0" 
+                       Stroke="Black" VerticalAlignment="Top" 
+                       Width="260" RadiusX="20" RadiusY="20" Fill="White"/>
             <StackPanel Margin="19,65,540,326" Height="35
-             " Width="235" MinWidth="3">
+                      " Width="235" MinWidth="3">
                 <Button x:Name="AddSection" Width="90" Height="30" Margin="140,0,0,0" Background="Crimson"
-             Content="Добавить" Foreground="White"
-             FontSize="14"  
-             RenderTransformOrigin="1.125,-1.767" Click="AddSection_Click">
+                        Content="Добавить" Foreground="White"  FontSize="14"
+                        RenderTransformOrigin="1.125,-1.767" Click="AddSection_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="8"/>
@@ -33,18 +32,18 @@
                     </Button.Resources>
                 </Button>
             </StackPanel>
-            <ListView x:Name="RecipeList" HorizontalAlignment="Left"
-   Height="279" Margin="10,104,0,0" 
-   VerticalAlignment="Top" Width="260" 
-          BorderBrush="{x:Null}" 
-          Background="{x:Null}" >
+            <ListView x:Name="RecipeList" HorizontalAlignment="Left" 
+                      Height="279" Margin="10,104,0,0" 
+                      VerticalAlignment="Top" Width="260" 
+                      BorderBrush="{x:Null}" 
+                      Background="{x:Null}" >
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <StackPanel Style="{StaticResource PanelListView}" MouseRightButtonDown="Right_Click" >
                             <Image Style="{StaticResource ImageListView}" Source ="{Binding Path = myImg}"/>
                             <TextBlock Style="{StaticResource TextListView}"
                                        Text="{Binding Path = Name}"/>
-                            <Button Style="{StaticResource PlusButton}">
+                            <Button Style="{StaticResource PlusButton}" Click="AddRecipe_Click">
                                 <Image Width="15" Height="15" Source ="/4.png"  StretchDirection="DownOnly" Stretch="Fill"/>
                             </Button>
                         </StackPanel>
@@ -52,42 +51,36 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Rectangle HorizontalAlignment="Left" 
-     Height="350" Margin="275,54,0,0" 
-     Stroke="Black" VerticalAlignment="Top" 
-     Width="505" RadiusX="20" RadiusY="20" Fill="White" Cursor="None"/>
-            <Grid x:Name="HidenGrid">
+                       Height="350" Margin="275,54,0,0" 
+                       Stroke="Black" VerticalAlignment="Top" 
+                       Width="505" RadiusX="20" RadiusY="20" Fill="White" Cursor="None"/>
+            <Grid x:Name="HidenGrid" Visibility="Visible" >
                 <Image Height="350" Width="505" Source ="/9.png"  Margin="275,54,0,0" Opacity="0.85"/>
-                <TextBox x:Name="Text1" 
-                         HorizontalAlignment="Left"
-                         Margin="605,74,0,0" 
-                         TextWrapping="Wrap"
-                         Text="TextBox" 
-                         VerticalAlignment="Top" 
-                         Width="165" Height="25" 
-                         TextAlignment="Right" 
-                         BorderBrush="{x:Null}"/>
+               
                 <Label Margin="385,180,0,0" FontSize="32" Content="Готовим с любовью!"/>
             </Grid>
 
             <Button Width="90" Height="30" Margin="280,10,50,0" Content="Назад" Background="#FFEA627E" FontSize="18" Foreground="White" Click="Back_Click"/>
+            <Button Width="120" Height="30" Margin="150,10,50,0" Content="Все рецепты" Background="#FFEA627E" FontSize="16" Foreground="White" Click="AllRecipe_Click"/>
             <Label Width="270" Height="54"
                    Content="Мои рецепты" FontSize="36" FontFamily="Sweet Mavka Script" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Padding="3,3,3,3"
                    Canvas.Left="500" VerticalAlignment="Top"/>
             <Image Height="40" Width="40" Margin="510,5,0,0" Source="/8.png"/>
             <Image Height="95" Width="150" Margin="15,2,0,0" Source="/7.png"/>
             <StackPanel x:Name="RedMenu" Height="80" Width="NaN" Orientation="Vertical" 
-            Background="WhiteSmoke" Margin="270,188,343,182" MouseLeave="MouseLeaveMenuRed" Visibility="Hidden">
+                        Background="WhiteSmoke" Margin="270,188,343,182" 
+                        MouseLeave="MouseLeaveMenuRed" Visibility="Hidden">
 
                 <Button x:Name="RedSection" Width="175" Height="30" Margin="3,10,10,10" 
-            Background="{x:Null}"
-            Content="Редактировать" Foreground="Black"
-            FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
-            HorizontalContentAlignment="Left" FontWeight="Bold" Click="Redact_Click"/>
+                        Background="{x:Null}"
+                        Content="Редактировать" Foreground="Black"
+                        FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left" FontWeight="Bold" Click="Redact_Click"/>
                 <Button x:Name="DelSection" Width="175" Height="30" Margin="3,-8,10,10" 
-            Background="{x:Null}"
-            Content="Удалить" Foreground="Black"
-            FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
-            HorizontalContentAlignment="Left" FontWeight="Bold" Click="Delete_Click"/>
+                        Background="{x:Null}"
+                        Content="Удалить" Foreground="Black"
+                        FontSize="11" RenderTransformOrigin="1.125,-1.767" HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left" FontWeight="Bold" Click="Delete_Click"/>
             </StackPanel>
             <Grid x:Name="RedPanel" Height="80" Width="300" Canvas.Left="178" Canvas.Top="164" Visibility="Hidden">
                 <Rectangle Height="80" Width="300" RadiusX="20" RadiusY="20" Fill="#FFFDFBFB" Stroke="Black" />
@@ -97,10 +90,74 @@
                     <Button x:Name="OkButton" Height="40" Width="40" Content="OK" Margin="5,0,0,0" Click="Add_Item_Click"/>
                 </StackPanel>
             </Grid>
-           
 
+            <ListView x:Name="AllRecipe" HorizontalAlignment="Left" Visibility="Hidden"
+                      Height="279" Margin="10,104,0,0" 
+                      VerticalAlignment="Top" Width="260" 
+                      BorderBrush="{x:Null}" 
+                      Background="{x:Null}" >
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <StackPanel Style="{StaticResource PanelListView}" Height="30" MouseDown="Recipe_MouseDown" >
+                            <Image Style="{StaticResource ImageListView}" Height="30" Width="30" Source ="{Binding Path = ImageRecipe}"/>
+                            <TextBlock Style="{StaticResource TextListView}" Height="24" FontSize="14"
+                                    Text="{Binding Path = NameResipe}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid x:Name="RedRecipePanel" Height="310" Width="480" Margin="287,80,0,0" Visibility="Hidden">
+                <StackPanel  Orientation="Vertical" 
+                            Width="480" Height="310" Background="White">
+                    <Button x:Name="DownloadImage_Recipe" Height="100" Width="150" Content="Загрузить" Click="AddImage_Recipe"/>
+                    <TextBox x:Name="RedNameRecipe"
+                             Height="25" Width="480" Text="Название" 
+                             HorizontalContentAlignment="Center"
+                             FontSize="18" FontWeight="Bold" BorderBrush="{x:Null}"/>
+                    <StackPanel x:Name="AddIngredients" Orientation="Horizontal" Width="300" Margin="-180,0,0,0" Background="White">
+                        <Button x:Name="PlusIngredients" Style="{StaticResource PlusButton}" Margin="0,0,0,0" Click="AddIngredientsPlus_Click" >
+                            <Image Width="15" Height="15" Source ="/4.png"  StretchDirection="DownOnly" Stretch="Fill"/>
+                        </Button>
+                        <TextBox x:Name="TextIngredients" Width="200" Margin="0,0,0,0"/>
+                    </StackPanel>
+
+                    <ComboBox x:Name="IngredientsBox"  IsEditable="True" IsReadOnly="True" Text="Ингредиенты:" 
+                              Height="30" FontSize="12"/>
+                    
+                    <TextBox x:Name="RedResipeText" Width="480" Height="125" Text="Описание рецепта:" TextWrapping="Wrap"
+                             FontSize="14" FontWeight="Normal"/>
+                </StackPanel>
+                <Button x:Name="OK_AddRecipe" Height="30" Width="50" Margin="400,0,0,280" Background="Crimson" Content="OK" Foreground="White" Click="OK_AddRecipe_Click"/>
+                <Button x:Name="NO_AddRecipe" Height="30" Width="50" Margin="400,0,0,190" Background="Crimson" Content="Отмена" Foreground="White" Click="No_AddRecipe_Click" />
+            </Grid>
+            <Grid x:Name="ViewRecipePanel" Height="310" Width="480" Margin="287,80,0,0" Visibility="Hidden">
+              
+                    <StackPanel  Orientation="Vertical" 
+                                Width="480" Height="310" Background="White">
+                    <Image x:Name="ImageRecipe" Height="100" Width="150" Source="{Binding Path = ImageRecipe}"/>
+                    <TextBlock x:Name="ViewNameRecipe" Text="{Binding Path = NameResipe}" Height="25" Width="480"
+                               FontSize="18" FontWeight="Bold" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Padding="200,0,0,0" />
+
+                    <ComboBox x:Name="ViewIngredientsBox"  IsEditable="True" IsReadOnly="True" Text="Ингредиенты:" 
+                              Height="30" FontSize="12" >
+                    </ComboBox>
+                    <TextBlock x:Name="ViewResipeText" Width="480" Height="125" Text="{Binding Path=Description}" TextWrapping="Wrap"
+                               FontSize="14" FontWeight="Normal"/>
+                </StackPanel>
+                <Button x:Name="Del_Recipe" Height="30" Width="90" Margin="370,0,0,280" Background="Crimson" Content="Удалить" Foreground="White" Click="Del_Recipe_Click" />
+                <Button x:Name="Red_Recipe" Height="30" Width="90" Margin="370,0,0,190" Background="Crimson" Content="Редактировать" Foreground="White" Click="Red_Recipe_Click"  />
+            </Grid>
         </Canvas>
-
+        <TextBox x:Name="Text1" 
+          HorizontalAlignment="Left"
+          Margin="605,74,0,0" 
+          TextWrapping="Wrap"
+          Text="TextBox" 
+          VerticalAlignment="Top" 
+          Width="165" Height="25" 
+          TextAlignment="Right" 
+          BorderBrush="{x:Null}"/>
     </Grid>
 </Window>
 
