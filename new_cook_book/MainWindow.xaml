@@ -6,12 +6,11 @@
         xmlns:local="clr-namespace:new_cook_book"
         mc:Ignorable="d"
               Title="MainWindow" Height="450" Width="805">
-
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="style/ResipeStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>         
         </ResourceDictionary>
     </Window.Resources>
     <Grid  Height="450" Width="800" MouseDown="MouseDownHideRedPanel" >
@@ -36,11 +35,11 @@
                       Height="279" Margin="10,104,0,0" 
                       VerticalAlignment="Top" Width="260" 
                       BorderBrush="{x:Null}" 
-                      Background="{x:Null}" >
+                      Background="{x:Null}" MouseDoubleClick="MouseDoubleClick_Item" >
                 <ListView.ItemTemplate >
                     <DataTemplate>
-                        <StackPanel Style="{StaticResource PanelListView}" MouseRightButtonDown="Right_Click" >
-                            <Image Style="{StaticResource ImageListView}" Source ="{Binding Path = myImg}"/>
+                        <StackPanel Style="{StaticResource PanelListView}" MouseRightButtonDown="Right_Click"  >
+                            <Image Style="{StaticResource ImageListView}" Source ="{Binding Path = Url , Converter = {StaticResource Converter}}"/>
                             <TextBlock Style="{StaticResource TextListView}"
                                        Text="{Binding Path = Name}"/>
                             <Button Style="{StaticResource PlusButton}" Click="AddRecipe_Click">
@@ -99,7 +98,7 @@
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <StackPanel Style="{StaticResource PanelListView}" Height="30" MouseDown="Recipe_MouseDown" >
-                            <Image Style="{StaticResource ImageListView}" Height="30" Width="30" Source ="{Binding Path = ImageRecipe}"/>
+                            <Image Style="{StaticResource ImageListView}" Height="30" Width="30" Source ="{Binding Path = UrlRecipe , Converter = {StaticResource Converter}}"/>
                             <TextBlock Style="{StaticResource TextListView}" Height="24" FontSize="14"
                                     Text="{Binding Path = NameResipe}"/>
                         </StackPanel>
@@ -134,7 +133,7 @@
               
                     <StackPanel  Orientation="Vertical" 
                                 Width="480" Height="310" Background="White">
-                    <Image x:Name="ImageRecipe" Height="100" Width="150" Source="{Binding Path = ImageRecipe}"/>
+                    <Image x:Name="ImageRecipe" Height="100" Width="150" Source ="{Binding Path = UrlRecipe , Converter = {StaticResource Converter}}"/>
                     <TextBlock x:Name="ViewNameRecipe" Text="{Binding Path = NameResipe}" Height="25" Width="480"
                                FontSize="18" FontWeight="Bold" 
                                HorizontalAlignment="Center" VerticalAlignment="Center" Padding="200,0,0,0" />
@@ -149,7 +148,7 @@
                 <Button x:Name="Red_Recipe" Height="30" Width="90" Margin="370,0,0,190" Background="Crimson" Content="Редактировать" Foreground="White" Click="Red_Recipe_Click"  />
             </Grid>
         </Canvas>
-        <TextBox x:Name="Text1" 
+        <!--<TextBox x:Name="Text1" 
           HorizontalAlignment="Left"
           Margin="605,74,0,0" 
           TextWrapping="Wrap"
@@ -157,7 +156,7 @@
           VerticalAlignment="Top" 
           Width="165" Height="25" 
           TextAlignment="Right" 
-          BorderBrush="{x:Null}"/>
+          BorderBrush="{x:Null}"/>-->
     </Grid>
 </Window>
 

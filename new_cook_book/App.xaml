@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:new_cook_book"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:BitmapConverter x:Key="Converter"/>
     </Application.Resources>
 </Application>

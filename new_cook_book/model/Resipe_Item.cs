@@ -13,9 +13,7 @@ namespace new_cook_book
     {
         public string ID_image { get; set; }
         public string Name { get; set; }
-        public List<Recipe> recipes = new List<Recipe>();
-        //[NonSerialized]
-        public ImageSource myImg {  get; set; }       
+        public string Url { get; set; }
     }
     [Serializable]
     public class Recipe
@@ -23,13 +21,9 @@ namespace new_cook_book
         public string IDRecipeItem { get; set; }
         public string ID { get; set; }//для связки с каритнкой
         public string NameResipe { get; set; }
-        public ImageSource ImageRecipe { get; set; }
+        public string UrlRecipe { get; set; }
         public List<string> ingredients = new List<string>();
         public string Description { get; set; }
         public List<string> GetIngredients() { return ingredients; }
-        public override string ToString()
-        {
-            return $" {NameResipe} ID: {ID} ";
-        }
     }
 }
