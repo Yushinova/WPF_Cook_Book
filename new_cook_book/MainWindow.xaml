@@ -98,9 +98,9 @@
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <StackPanel Style="{StaticResource PanelListView}" Height="30" MouseDown="Recipe_MouseDown" >
-                            <Image Style="{StaticResource ImageListView}" Height="30" Width="30" Source ="{Binding Path = UrlRecipe , Converter = {StaticResource Converter}}"/>
+                            <Image Style="{StaticResource ImageListView}" Height="30" Width="30" Source ="{Binding Path = Url , Converter = {StaticResource Converter}}"/>
                             <TextBlock Style="{StaticResource TextListView}" Height="24" FontSize="14"
-                                    Text="{Binding Path = NameResipe}"/>
+                                    Text="{Binding Path = Name}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -133,8 +133,8 @@
               
                     <StackPanel  Orientation="Vertical" 
                                 Width="480" Height="310" Background="White">
-                    <Image x:Name="ImageRecipe" Height="100" Width="150" Source ="{Binding Path = UrlRecipe , Converter = {StaticResource Converter}}"/>
-                    <TextBlock x:Name="ViewNameRecipe" Text="{Binding Path = NameResipe}" Height="25" Width="480"
+                    <Image x:Name="ImageRecipe" Height="100" Width="150" Source ="{Binding Path = Url , Converter = {StaticResource Converter}}"/>
+                    <TextBlock x:Name="ViewNameRecipe" Text="{Binding Path = Name}" Height="25" Width="480"
                                FontSize="18" FontWeight="Bold" 
                                HorizontalAlignment="Center" VerticalAlignment="Center" Padding="200,0,0,0" />
 

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ArrayOfRecipe_Item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Recipe_Item>
+    <ID_image>1</ID_image>
+    <Name>Первые блюда</Name>
+    <Url>C:\Users\User\source\repos\new_cook_book\new_cook_book\bin\Debug\image\1.png</Url>
+  </Recipe_Item>
+  <Recipe_Item>
+    <ID_image>2</ID_image>
+    <Name>Вторые блюда</Name>
+    <Url>C:\Users\User\source\repos\new_cook_book\new_cook_book\bin\Debug\image\2.png</Url>
+  </Recipe_Item>
+  <Recipe_Item>
+    <ID_image>3</ID_image>
+    <Name>Салаты</Name>
+    <Url>C:\Users\User\source\repos\new_cook_book\new_cook_book\bin\Debug\image\3.png</Url>
+  </Recipe_Item>
+  <Recipe_Item>
+    <ID_image>5</ID_image>
+    <Name>Завтрак</Name>
+    <Url>C:\Users\User\source\repos\new_cook_book\new_cook_book\bin\Debug\image\5.png</Url>
+  </Recipe_Item>
+  <Recipe_Item>
+    <ID_image>6</ID_image>
+    <Name>Десерты</Name>
+    <Url>C:\Users\User\source\repos\new_cook_book\new_cook_book\bin\Debug\image\6.png</Url>
+  </Recipe_Item>
+</ArrayOfRecipe_Item>

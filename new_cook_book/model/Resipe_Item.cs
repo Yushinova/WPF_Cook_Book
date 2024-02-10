@@ -15,15 +15,12 @@ namespace new_cook_book
         public string Name { get; set; }
         public string Url { get; set; }
     }
-    [Serializable]
-    public class Recipe
+   // [Serializable]
+    public class Recipe: Recipe_Item
     {
         public string IDRecipeItem { get; set; }
-        public string ID { get; set; }//для связки с каритнкой
-        public string NameResipe { get; set; }
-        public string UrlRecipe { get; set; }
+
         public List<string> ingredients = new List<string>();
         public string Description { get; set; }
-        public List<string> GetIngredients() { return ingredients; }
     }
 }

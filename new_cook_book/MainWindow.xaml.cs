@@ -46,8 +46,8 @@ namespace new_cook_book
                 };
                 helper.recipes = new List<Recipe>
                 {
-                    new Recipe{ID="1", IDRecipeItem="1", NameResipe="Борщ", UrlRecipe = helper.domainPath + @"image\1.png", ingredients={"капуста","картофель","лук" }, Description="Положите одно, потом другое и третье" },
-                    new Recipe{ID="2", IDRecipeItem="1", NameResipe="Суп", UrlRecipe = helper.domainPath + @"image\2.png", ingredients={"курица","картофель","лук" }, Description="Отварите курицу, пассируйте лук и морковь" },
+                    new Recipe{ID_image="1", IDRecipeItem="1", Name="Борщ", Url = helper.domainPath + @"image\1.png", ingredients={"капуста","картофель","лук" }, Description="Положите одно, потом другое и третье" },
+                    new Recipe{ID_image="2", IDRecipeItem="1", Name="Суп", Url = helper.domainPath + @"image\2.png", ingredients={"курица","картофель","лук" }, Description="Отварите курицу, пассируйте лук и морковь" },
                 };
             }   
             AllRecipe.ItemsSource = helper.all_recipes;
@@ -121,7 +121,7 @@ namespace new_cook_book
                 {
                     if (helper.recipes[i].IDRecipeItem == helper.temp_ID)
                     {
-                        string temp_del_path = helper.recipes[i].UrlRecipe;
+                        string temp_del_path = helper.recipes[i].Url;
                         helper.recipes.Remove(helper.recipes[i]);
                         if (System.IO.File.Exists(temp_del_path)) { File.Delete(temp_del_path); temp_del_path = ""; }
                         i--;
@@ -263,7 +263,7 @@ namespace new_cook_book
             DownloadImage_Recipe.Content = "Загрузить";
             RedNameRecipe.Text = "Название";
             IngredientsBox.Items.Clear();
-            RedResipeText.Text = "Описание рецепта";
+            RedResipeText.Text = "Описание рецепта:";
             HidenGrid.Visibility = Visibility.Hidden;
             ViewRecipePanel.Visibility = Visibility.Hidden;
             RedRecipePanel.Visibility = Visibility.Visible;
@@ -317,7 +317,7 @@ namespace new_cook_book
 
             if (helper.isRed)
             {
-                helper.del_path = helper.recipe.UrlRecipe;//путь старой катринки, которую нужно удалить будет после редактирования
+                helper.del_path = helper.recipe.Url;//путь старой катринки, которую нужно удалить будет после редактирования
             }
             if(helper.isChangeImage)//картинка менялась
             {
@@ -327,17 +327,17 @@ namespace new_cook_book
                 jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(save));
                 using (FileStream fileStream = new FileStream(@"image\" + save_name + ".png", FileMode.Create))//bin debug сохранение картинки в папке
                 jpegBitmapEncoder.Save(fileStream);
-                temp.ID = save_name;
-                temp.UrlRecipe = helper.domainPath + @"image\" + save_name + ".png";//новый УРЛ
+                temp.ID_image = save_name;
+                temp.Url = helper.domainPath + @"image\" + save_name + ".png";//новый УРЛ
             }
             if(!helper.isChangeImage)//если картинка не менялась, берем из редактируемого рецепта, остальное берем из буферного
             {
-                temp.ID = helper.recipe.ID;
-                temp.UrlRecipe = helper.recipe.UrlRecipe;
+                temp.ID_image = helper.recipe.ID_image;
+                temp.Url = helper.recipe.Url;
             }
            
             temp.IDRecipeItem = helper.temp_ID;
-            temp.NameResipe = RedNameRecipe.Text;
+            temp.Name = RedNameRecipe.Text;
             foreach (var item in IngredientsBox.Items)//закидываем ингредиенты в лист ингредиентов
             {
                 temp.ingredients.Add((item as ComboBoxItem).Content.ToString());
@@ -413,8 +413,8 @@ namespace new_cook_book
 
         private void Del_Recipe_Click(object sender, RoutedEventArgs e)//удаление рецепта
         {
-            helper.del_path = ((sender as FrameworkElement).DataContext as Recipe).UrlRecipe;
-            if (MessageBox.Show("Вы хотите удалить " + ((sender as FrameworkElement).DataContext as Recipe).NameResipe + "?", "...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            helper.del_path = ((sender as FrameworkElement).DataContext as Recipe).Url;
+            if (MessageBox.Show("Вы хотите удалить " + ((sender as FrameworkElement).DataContext as Recipe).Name + "?", "...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 helper.recipes.Remove((sender as FrameworkElement).DataContext as Recipe);
                 helper.all_recipes.Remove((sender as FrameworkElement).DataContext as Recipe);
@@ -430,9 +430,9 @@ namespace new_cook_book
             IngredientsBox.Items.Clear();//очищаем ингридиенты во вьюшке
             helper.recipe = AllRecipe.SelectedItem as Recipe;//инициализируем буферный рецепт тем что мы хотим редактировать
             Image im = new Image();
-            im.Source = SetBitmap(helper.recipe.UrlRecipe);
+            im.Source = SetBitmap(helper.recipe.Url);
             DownloadImage_Recipe.Content = im;
-            RedNameRecipe.Text = helper.recipe.NameResipe;
+            RedNameRecipe.Text = helper.recipe.Name;
             foreach (var item in helper.recipe.ingredients)
             {
                 ComboBoxItem item_combo = new ComboBoxItem();

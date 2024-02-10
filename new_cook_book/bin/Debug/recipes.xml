@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ArrayOfRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Recipe>
+    <ID_image>1</ID_image>
+    <Name>Борщ</Name>
+    <Url>C:\Users\User\source\repos\new_cook_book\new_cook_book\bin\Debug\image\1.png</Url>
+    <ingredients>
+      <string>капуста</string>
+      <string>картофель</string>
+      <string>лук</string>
+    </ingredients>
+    <IDRecipeItem>1</IDRecipeItem>
+    <Description>Положите одно, потом другое и третье</Description>
+  </Recipe>
+  <Recipe>
+    <ID_image>2</ID_image>
+    <Name>Суп</Name>
+    <Url>C:\Users\User\source\repos\new_cook_book\new_cook_book\bin\Debug\image\2.png</Url>
+    <ingredients>
+      <string>курица</string>
+      <string>картофель</string>
+      <string>лук</string>
+    </ingredients>
+    <IDRecipeItem>1</IDRecipeItem>
+    <Description>Отварите курицу, пассируйте лук и морковь</Description>
+  </Recipe>
+</ArrayOfRecipe>
