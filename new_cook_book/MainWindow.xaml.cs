@@ -178,7 +178,7 @@ namespace new_cook_book
             Recipe_Item item = new Recipe_Item { ID_image = save_name, Name = RedText.Text, Url = helper.domainPath + @"image\" + save_name + ".png" };
             return item;
         }
-        private void Add_Item_Click(object sender, RoutedEventArgs e)//кнопка Ок при добавлении/редактировании нового раздела
+        private void Add_Item_Click(object sender, RoutedEventArgs e)//кнопка Ок при добавлении/редактировании нового раздела 
         {
             if (helper.isAdd)//режим добавления
             {
